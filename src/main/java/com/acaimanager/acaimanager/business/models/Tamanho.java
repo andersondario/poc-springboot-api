@@ -18,7 +18,15 @@ public class Tamanho extends AbstractEntity {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Integer getQuantidade() {
         return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 }

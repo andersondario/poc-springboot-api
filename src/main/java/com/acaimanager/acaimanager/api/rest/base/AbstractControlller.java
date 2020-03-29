@@ -19,20 +19,20 @@ public abstract class AbstractControlller<ReqDTO extends Serializable, ResDTO ex
             response = service.dispatch(reqDTO);
             posExecutionCheck(response);
         } catch (BusinessException e) {
-            return buildErrorResponse(UNPROCESSABLE_ENTITY);
+            return buildErrorResponse(UNPROCESSABLE_ENTITY, e);
         } catch (Exception e) {
-            return buildErrorResponse(INTERNAL_SERVER_ERROR);
+            return buildErrorResponse(INTERNAL_SERVER_ERROR, e);
         }
 
         return buildSuccessResponse(response);
     }
 
-    private ResponseEntity<Serializable> buildErrorResponse(HttpStatus unprocessableEntity) {
-        return null;
+    private ResponseEntity<Serializable> buildErrorResponse(HttpStatus httpStatus, Exception e) {
+        return new ResponseEntity<>(new ErrorDTO(e.getMessage()), httpStatus);
     }
 
     private ResponseEntity<Serializable> buildSuccessResponse(ResDTO resDTO) {
-        return null;
+        return new ResponseEntity<>(new SuccessDTO(resDTO), getSuccessCode());
     }
 
     protected abstract void preExecutionCheck(ReqDTO reqDTO) throws Exception;

@@ -1,18 +1,19 @@
 package com.acaimanager.acaimanager.business.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "ACAI")
-public class Acai extends AbstractEntity {
+public class Acai extends AbstractEntity implements Serializable {
 
-    @Column(name = "TAMANHO")
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TAMANHO_ID")
     private Tamanho tamanho;
 
-    @Column(name = "FRUTA")
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FRUTA_ID")
     private Fruta fruta;
 
     @Column(name = "ADICIONAL")
