@@ -8,10 +8,10 @@ import javax.persistence.Table;
 @Table(name = "TAMANHO")
 public class Tamanho extends AbstractEntity {
 
-    @Column
+    @Column(name = "NOME")
     private String nome;
 
-    @Column
+    @Column(name = "QUANTIDADE")
     private Integer quantidade;
 
     public String getNome() {

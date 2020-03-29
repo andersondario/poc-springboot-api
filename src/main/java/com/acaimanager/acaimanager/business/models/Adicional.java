@@ -14,6 +14,9 @@ public class Adicional extends AbstractEntity {
     @Column(name = "VALOR")
     private Double valor;
 
+    @Column(name = "TEMPO_ADICIONAL")
+    private Integer tempoAdicional;
+
     public String getNome() {
         return nome;
     }
