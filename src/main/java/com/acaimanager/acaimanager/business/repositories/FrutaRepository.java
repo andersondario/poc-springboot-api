@@ -1,23 +1,13 @@
 package com.acaimanager.acaimanager.business.repositories;
 
 import com.acaimanager.acaimanager.business.models.Fruta;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import static org.hibernate.criterion.Restrictions.eq;
-
 @Repository
-public class FrutaRepository {
+public interface FrutaRepository extends JpaRepository<Fruta, Long> {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    public Fruta findByNome(String nome) {
-        return (Fruta) sessionFactory.getCurrentSession()
-                .createCriteria(Fruta.class)
-                .add(eq("nome", nome))
-                .uniqueResult();
-    }
+    @Query("SELECT T FROM Fruta T WHERE T.nome = ?1")
+    Fruta findByNome(String nome);
 }

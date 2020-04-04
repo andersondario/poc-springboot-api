@@ -1,43 +1,40 @@
 package com.acaimanager.acaimanager.business.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "ADICIONAL")
-public class Adicional extends AbstractEntity {
+public class Adicional extends AbstractEntity{
 
-    @Column(name = "NOME")
-    private String nome;
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Acai acai;
 
-    @Column(name = "VALOR")
-    private Double valor;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "TIPO_ADICIONAL_ID")
+    private TipoAdicional tipoAdicional;
 
-    @Column(name = "TEMPO_ADICIONAL")
-    private Integer tempoAdicional;
-
-    public String getNome() {
-        return nome;
+    public Adicional() {
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Adicional(Acai acai, TipoAdicional tipoAdicional) {
+        this.acai = acai;
+        this.tipoAdicional = tipoAdicional;
     }
 
-    public Double getValor() {
-        return valor;
+    public Acai getAcai() {
+        return acai;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setAcai(Acai acai) {
+        this.acai = acai;
     }
 
-    public Integer getTempoAdicional() {
-        return tempoAdicional;
+    public TipoAdicional getTipoAdicional() {
+        return tipoAdicional;
     }
 
-    public void setTempoAdicional(Integer tempoAdicional) {
-        this.tempoAdicional = tempoAdicional;
+    public void setTipoAdicional(TipoAdicional tipoAdicional) {
+        this.tipoAdicional = tipoAdicional;
     }
 }

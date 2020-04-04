@@ -32,7 +32,7 @@ public abstract class AbstractControlller<ReqDTO extends Serializable, ResDTO ex
     }
 
     private ResponseEntity<Serializable> buildSuccessResponse(ResDTO resDTO) {
-        return new ResponseEntity<>(new SuccessDTO(resDTO), getSuccessCode());
+        return new ResponseEntity<>(resDTO, getSuccessCode());
     }
 
     protected abstract void preExecutionCheck(ReqDTO reqDTO) throws Exception;

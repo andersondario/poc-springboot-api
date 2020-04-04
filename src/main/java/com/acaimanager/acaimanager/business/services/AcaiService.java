@@ -4,14 +4,11 @@ import com.acaimanager.acaimanager.business.exceptions.AdicionalInvalidoExceptio
 import com.acaimanager.acaimanager.business.exceptions.BusinessException;
 import com.acaimanager.acaimanager.business.exceptions.FrutaInvalidaException;
 import com.acaimanager.acaimanager.business.exceptions.TamanhoInvalidoException;
-import com.acaimanager.acaimanager.business.models.Acai;
-import com.acaimanager.acaimanager.business.models.Adicional;
-import com.acaimanager.acaimanager.business.models.Fruta;
-import com.acaimanager.acaimanager.business.models.Tamanho;
+import com.acaimanager.acaimanager.business.models.*;
 import com.acaimanager.acaimanager.business.repositories.AcaiRepository;
-import com.acaimanager.acaimanager.business.repositories.AdicionaisRepository;
 import com.acaimanager.acaimanager.business.repositories.FrutaRepository;
 import com.acaimanager.acaimanager.business.repositories.TamanhoRepository;
+import com.acaimanager.acaimanager.business.repositories.TipoAdicionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +25,7 @@ public class AcaiService {
     private TamanhoRepository tamanhoRepository;
 
     @Autowired
-    private AdicionaisRepository adicionaisRepository;
+    private TipoAdicionalRepository adicionaisRepository;
 
     @Autowired
     private FrutaRepository frutaRepository;
@@ -37,10 +34,10 @@ public class AcaiService {
         final Acai acai = new Acai();
 
         acai.setTamanho(getTamanho(nomeTamanho));
-        acai.setFruta(getFruta(nomeFruta));
-        acai.setAdicionais(getAdicionais(nomeAdicionais));
+//        acai.setFruta(getFruta(nomeFruta));
+//        acai.setAdicionais(getAdicionais(acai, nomeAdicionais));
 
-        return acaiRepository.create(acai);
+        return acaiRepository.save(acai);
     }
 
     public List<Acai> getAllAcais() {
@@ -61,14 +58,14 @@ public class AcaiService {
         return fruta;
     }
 
-    private List<Adicional> getAdicionais(List<String> nomeAdicionais) throws AdicionalInvalidoException {
+    private List<Adicional> getAdicionais(Acai acai, List<String> nomeAdicionais) throws AdicionalInvalidoException {
         final List<Adicional> adicionais = new ArrayList<>();
 
         for (String nomeAdicional : nomeAdicionais) {
-            final Adicional adicional = adicionaisRepository.findBy(nomeAdicional);
-            if (adicional == null) throw new AdicionalInvalidoException(nomeAdicional);
+            final TipoAdicional tipoAdicional = adicionaisRepository.findByNome(nomeAdicional);
+            if (tipoAdicional == null) throw new AdicionalInvalidoException(nomeAdicional);
 
-            adicionais.add(adicional);
+            adicionais.add(new Adicional(acai, tipoAdicional));
         }
 
         return adicionais;
