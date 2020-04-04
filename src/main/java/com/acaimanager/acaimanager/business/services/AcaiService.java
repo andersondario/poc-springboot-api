@@ -34,7 +34,7 @@ public class AcaiService {
         final Acai acai = new Acai();
 
         acai.setTamanho(getTamanho(nomeTamanho));
-//        acai.setFruta(getFruta(nomeFruta));
+        acai.setFruta(getFruta(nomeFruta));
 //        acai.setAdicionais(getAdicionais(acai, nomeAdicionais));
 
         return acaiRepository.save(acai);

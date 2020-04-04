@@ -14,9 +14,9 @@ public class Acai extends AbstractEntity implements Serializable {
     @JsonProperty(value = "tamanho")
     private Tamanho tamanho;
 
-//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "TAMANHO_ID")
-//    private Fruta fruta;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FRUTA_ID")
+    private Fruta fruta;
 
 //    @Column(name = "ADICIONAL")
 //    @OneToMany(mappedBy = "acai", cascade = CascadeType.ALL)
@@ -30,13 +30,13 @@ public class Acai extends AbstractEntity implements Serializable {
         this.tamanho = tamanho;
     }
 
-//    public Fruta getFruta() {
-//        return fruta;
-//    }
-//
-//    public void setFruta(Fruta fruta) {
-//        this.fruta = fruta;
-//    }
+    public Fruta getFruta() {
+        return fruta;
+    }
+
+    public void setFruta(Fruta fruta) {
+        this.fruta = fruta;
+    }
 //
 //    public List<Adicional> getAdicionais() {
 //        return adicionais;
