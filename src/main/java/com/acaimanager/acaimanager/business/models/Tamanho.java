@@ -13,11 +13,9 @@ import java.io.Serializable;
 public class Tamanho extends AbstractEntity implements Serializable {
 
     @Column(name = "NOME")
-    @JsonProperty(value = "nome")
     private String nome;
 
     @Column(name = "QUANTIDADE")
-    @JsonProperty(value = "quantidade")
     private Integer quantidade;
 
     public String getNome() {

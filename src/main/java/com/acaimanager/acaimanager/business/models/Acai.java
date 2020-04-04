@@ -12,7 +12,6 @@ public class Acai extends AbstractEntity implements Serializable {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "TAMANHO_ID")
-    @JsonProperty(value = "tamanho")
     private Tamanho tamanho;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

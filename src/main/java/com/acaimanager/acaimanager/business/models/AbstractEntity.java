@@ -10,7 +10,6 @@ public abstract class AbstractEntity {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonProperty(value = "id")
     protected Long id;
 
     public Long getId() {
