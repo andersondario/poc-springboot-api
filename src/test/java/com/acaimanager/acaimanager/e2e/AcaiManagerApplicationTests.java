@@ -1,6 +1,7 @@
 package com.acaimanager.acaimanager.e2e;
 
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiRequestDTO;
+import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiResponseDTO;
 import com.acaimanager.acaimanager.business.models.Acai;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -37,11 +38,10 @@ class AcaiManagerApplicationTests {
 		final ResponseEntity<String> postResponse = restTemplate.exchange(createURLWithPort(BASE_URL), HttpMethod.POST, entity, String.class);
 
 		final ObjectMapper objectMapper = new ObjectMapper();
-		final Acai acai = objectMapper.readValue(postResponse.getBody(), Acai.class);
+		final AcaiResponseDTO acai = objectMapper.readValue(postResponse.getBody(), AcaiResponseDTO.class);
 
 		assertEquals(HttpStatus.CREATED, postResponse.getStatusCode());
 		assertEquals(1L, acai.getId().longValue());
-		assertEquals(300L, acai.getTamanho().getQuantidade().longValue());
 	}
 
 	@Test

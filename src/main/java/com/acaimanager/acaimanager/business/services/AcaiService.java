@@ -61,11 +61,13 @@ public class AcaiService {
     private List<Adicional> getAdicionais(Acai acai, List<String> nomeAdicionais) throws AdicionalInvalidoException {
         final List<Adicional> adicionais = new ArrayList<>();
 
-        for (String nomeAdicional : nomeAdicionais) {
-            final TipoAdicional tipoAdicional = tipoAdicionalRepository.findByNome(nomeAdicional);
-            if (tipoAdicional == null) throw new AdicionalInvalidoException(nomeAdicional);
+        if(nomeAdicionais != null) {
+            for (String nomeAdicional : nomeAdicionais) {
+                final TipoAdicional tipoAdicional = tipoAdicionalRepository.findByNome(nomeAdicional);
+                if (tipoAdicional == null) throw new AdicionalInvalidoException(nomeAdicional);
 
-            adicionais.add(new Adicional(acai, tipoAdicional));
+                adicionais.add(new Adicional(acai, tipoAdicional));
+            }
         }
 
         return adicionais;
