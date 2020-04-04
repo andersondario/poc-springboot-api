@@ -1,6 +1,6 @@
 package com.acaimanager.acaimanager.e2e;
 
-import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.PedidoDTO;
+import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiRequestDTO;
 import com.acaimanager.acaimanager.business.models.Acai;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -29,11 +29,11 @@ class AcaiManagerApplicationTests {
 
 	@Test
 	public void dadoSolicitacaoDeCriarUmPedidoEntaoDeveCriarUmAcaiComSucesso() throws Exception {
-		final PedidoDTO pedidoDTO = new PedidoDTO();
-		pedidoDTO.setTamanho("pequeno");
-		pedidoDTO.setFruta("morango");
+		final AcaiRequestDTO acaiRequestDTO = new AcaiRequestDTO();
+		acaiRequestDTO.setTamanho("pequeno");
+		acaiRequestDTO.setFruta("morango");
 
-		final HttpEntity<PedidoDTO> entity = new HttpEntity<PedidoDTO>(pedidoDTO, null);
+		final HttpEntity<AcaiRequestDTO> entity = new HttpEntity<AcaiRequestDTO>(acaiRequestDTO, null);
 		final ResponseEntity<String> postResponse = restTemplate.exchange(createURLWithPort(BASE_URL), HttpMethod.POST, entity, String.class);
 
 		final ObjectMapper objectMapper = new ObjectMapper();
@@ -46,10 +46,10 @@ class AcaiManagerApplicationTests {
 
 	@Test
 	public void dadoSolicitacaoDeCriarUmPedidoDeFormaInvalidaEntaoDeveRetornarErro() {
-		final PedidoDTO pedidoDTO = new PedidoDTO();
-		pedidoDTO.setTamanho("pequenoASD");
+		final AcaiRequestDTO acaiRequestDTO = new AcaiRequestDTO();
+		acaiRequestDTO.setTamanho("pequenoASD");
 
-		final HttpEntity<PedidoDTO> entity = new HttpEntity<PedidoDTO>(pedidoDTO, null);
+		final HttpEntity<AcaiRequestDTO> entity = new HttpEntity<AcaiRequestDTO>(acaiRequestDTO, null);
 		final ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/api/v1/pedidos"), HttpMethod.POST, entity, String.class);
 
 		assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, response.getStatusCode());

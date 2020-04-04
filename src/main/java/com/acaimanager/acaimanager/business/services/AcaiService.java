@@ -25,7 +25,7 @@ public class AcaiService {
     private TamanhoRepository tamanhoRepository;
 
     @Autowired
-    private TipoAdicionalRepository adicionaisRepository;
+    private TipoAdicionalRepository tipoAdicionalRepository;
 
     @Autowired
     private FrutaRepository frutaRepository;
@@ -35,7 +35,7 @@ public class AcaiService {
 
         acai.setTamanho(getTamanho(nomeTamanho));
         acai.setFruta(getFruta(nomeFruta));
-//        acai.setAdicionais(getAdicionais(acai, nomeAdicionais));
+        acai.setAdicionais(getAdicionais(acai, nomeAdicionais));
 
         return acaiRepository.save(acai);
     }
@@ -62,7 +62,7 @@ public class AcaiService {
         final List<Adicional> adicionais = new ArrayList<>();
 
         for (String nomeAdicional : nomeAdicionais) {
-            final TipoAdicional tipoAdicional = adicionaisRepository.findByNome(nomeAdicional);
+            final TipoAdicional tipoAdicional = tipoAdicionalRepository.findByNome(nomeAdicional);
             if (tipoAdicional == null) throw new AdicionalInvalidoException(nomeAdicional);
 
             adicionais.add(new Adicional(acai, tipoAdicional));

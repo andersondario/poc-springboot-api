@@ -3,7 +3,7 @@ package com.acaimanager.acaimanager.api.rest.v1.pedido.dtos;
 import java.io.Serializable;
 import java.util.List;
 
-public class PedidoDTO implements Serializable {
+public class AcaiRequestDTO implements Serializable {
 
     private String tamanho;
 

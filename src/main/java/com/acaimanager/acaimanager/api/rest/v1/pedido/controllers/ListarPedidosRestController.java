@@ -1,6 +1,7 @@
 package com.acaimanager.acaimanager.api.rest.v1.pedido.controllers;
 
 import com.acaimanager.acaimanager.api.rest.base.AbstractControlller;
+import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiResponseDTO;
 import com.acaimanager.acaimanager.api.rest.v1.pedido.services.ListarPedidosRestService;
 import com.acaimanager.acaimanager.business.models.Acai;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/v1/pedidos")
-public class ListarPedidosRestController extends AbstractControlller<Serializable, ArrayList<Acai>, ListarPedidosRestService> {
+public class ListarPedidosRestController extends AbstractControlller<Serializable, ArrayList<AcaiResponseDTO>, ListarPedidosRestService> {
 
     @Autowired
     private ListarPedidosRestService listarPedidosRestService;
@@ -31,7 +32,7 @@ public class ListarPedidosRestController extends AbstractControlller<Serializabl
     }
 
     @Override
-    protected void posExecutionCheck(ArrayList<Acai> acais) throws Exception {
+    protected void posExecutionCheck(ArrayList<AcaiResponseDTO> acais) throws Exception {
 
     }
 

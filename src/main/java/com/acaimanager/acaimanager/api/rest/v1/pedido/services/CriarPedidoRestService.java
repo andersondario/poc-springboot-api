@@ -1,21 +1,23 @@
 package com.acaimanager.acaimanager.api.rest.v1.pedido.services;
 
 import com.acaimanager.acaimanager.api.rest.base.RestService;
-import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.PedidoDTO;
+import com.acaimanager.acaimanager.api.rest.v1.pedido.builder.ResponseBuilder;
+import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiRequestDTO;
+import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiResponseDTO;
+import com.acaimanager.acaimanager.business.models.Acai;
 import com.acaimanager.acaimanager.business.services.AcaiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.Serializable;
-
 @Service
-public class CriarPedidoRestService implements RestService<PedidoDTO, Serializable> {
+public class CriarPedidoRestService implements RestService<AcaiRequestDTO, AcaiResponseDTO> {
 
     @Autowired
     private AcaiService acaiService;
 
     @Override
-    public Serializable dispatch(PedidoDTO pedidoDTO) throws Exception {
-        return acaiService.criaAcai(pedidoDTO.getTamanho(), pedidoDTO.getFruta(), pedidoDTO.getAdicionais());
+    public AcaiResponseDTO dispatch(AcaiRequestDTO acaiRequestDTO) throws Exception {
+        final Acai acai = acaiService.criaAcai(acaiRequestDTO.getTamanho(), acaiRequestDTO.getFruta(), acaiRequestDTO.getAdicionais());
+        return ResponseBuilder.build(acai);
     }
 }
