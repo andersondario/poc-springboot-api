@@ -1,4 +1,4 @@
-package com.acaimanager.acaimanager;
+package com.acaimanager.acaimanager.functional;
 
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiRequestDTO;
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiResponseDTO;

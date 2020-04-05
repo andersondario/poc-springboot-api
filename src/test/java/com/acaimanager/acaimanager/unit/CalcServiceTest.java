@@ -1,4 +1,4 @@
-package com.acaimanager.acaimanager;
+package com.acaimanager.acaimanager.unit;
 
 import com.acaimanager.acaimanager.business.models.Adicional;
 import com.acaimanager.acaimanager.business.models.Fruta;

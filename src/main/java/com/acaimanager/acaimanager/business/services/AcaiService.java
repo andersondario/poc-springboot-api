@@ -1,9 +1,9 @@
 package com.acaimanager.acaimanager.business.services;
 
-import com.acaimanager.acaimanager.business.exceptions.AdicionalInvalidoException;
-import com.acaimanager.acaimanager.business.exceptions.BusinessException;
-import com.acaimanager.acaimanager.business.exceptions.FrutaInvalidaException;
-import com.acaimanager.acaimanager.business.exceptions.TamanhoInvalidoException;
+import com.acaimanager.acaimanager.business.exceptions.general.AdicionalInvalidoException;
+import com.acaimanager.acaimanager.business.exceptions.base.BusinessException;
+import com.acaimanager.acaimanager.business.exceptions.general.FrutaInvalidaException;
+import com.acaimanager.acaimanager.business.exceptions.general.TamanhoInvalidoException;
 import com.acaimanager.acaimanager.business.models.*;
 import com.acaimanager.acaimanager.business.repositories.AcaiRepository;
 import com.acaimanager.acaimanager.business.repositories.FrutaRepository;
@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.lang.Double.parseDouble;
 
 @Service
 public class AcaiService {

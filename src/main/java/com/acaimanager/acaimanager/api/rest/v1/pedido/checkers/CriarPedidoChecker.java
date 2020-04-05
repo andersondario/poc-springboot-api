@@ -1,6 +1,6 @@
 package com.acaimanager.acaimanager.api.rest.v1.pedido.checkers;
 
-import com.acaimanager.acaimanager.api.rest.base.exceptions.ParametroObrigatorioException;
+import com.acaimanager.acaimanager.business.exceptions.general.ParametroObrigatorioException;
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiRequestDTO;
 import org.springframework.stereotype.Service;
 

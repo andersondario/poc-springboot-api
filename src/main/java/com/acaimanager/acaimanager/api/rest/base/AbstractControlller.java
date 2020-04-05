@@ -1,7 +1,7 @@
 package com.acaimanager.acaimanager.api.rest.base;
 
-import com.acaimanager.acaimanager.api.rest.base.exceptions.RestException;
-import com.acaimanager.acaimanager.business.exceptions.BusinessException;
+import com.acaimanager.acaimanager.business.exceptions.base.RestException;
+import com.acaimanager.acaimanager.business.exceptions.base.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
