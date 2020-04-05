@@ -1,13 +1,13 @@
 package com.acaimanager.acaimanager.api.rest.base;
 
+import com.acaimanager.acaimanager.api.rest.base.exceptions.RestException;
 import com.acaimanager.acaimanager.business.exceptions.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.io.Serializable;
 
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
+import static org.springframework.http.HttpStatus.*;
 
 public abstract class AbstractControlller<ReqDTO extends Serializable, ResDTO extends Serializable, Service extends RestService<ReqDTO, ResDTO>> {
 
@@ -20,6 +20,8 @@ public abstract class AbstractControlller<ReqDTO extends Serializable, ResDTO ex
             posExecutionCheck(response);
         } catch (BusinessException e) {
             return buildErrorResponse(UNPROCESSABLE_ENTITY, e);
+        } catch(RestException e) {
+            return buildErrorResponse(BAD_REQUEST, e);
         } catch (Exception e) {
             return buildErrorResponse(INTERNAL_SERVER_ERROR, e);
         }

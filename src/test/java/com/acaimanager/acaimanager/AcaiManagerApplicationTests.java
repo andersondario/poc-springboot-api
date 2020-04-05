@@ -1,8 +1,7 @@
-package com.acaimanager.acaimanager.e2e;
+package com.acaimanager.acaimanager;
 
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiRequestDTO;
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiResponseDTO;
-import com.acaimanager.acaimanager.business.models.Acai;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class AcaiManagerApplicationTests {
+public class AcaiManagerApplicationTests {
 
 	private static final String BASE_URL = "/api/v1/pedidos";
 
@@ -45,9 +44,21 @@ class AcaiManagerApplicationTests {
 	}
 
 	@Test
-	public void dadoSolicitacaoDeCriarUmPedidoDeFormaInvalidaEntaoDeveRetornarErro() {
+	public void dadoUmaRequisicaoSemCampoObrigatorioEntaoDeveRetornarBadRequest() throws Exception {
+		final AcaiRequestDTO acaiRequestDTO = new AcaiRequestDTO();
+		acaiRequestDTO.setFruta("morango");
+
+		final HttpEntity<AcaiRequestDTO> entity = new HttpEntity<AcaiRequestDTO>(acaiRequestDTO, null);
+		final ResponseEntity<String> postResponse = restTemplate.exchange(createURLWithPort(BASE_URL), HttpMethod.POST, entity, String.class);
+
+		assertEquals(HttpStatus.BAD_REQUEST, postResponse.getStatusCode());
+	}
+
+	@Test
+	public void dadoUmaRequisicaoComParametroInvalidoEntaoDeveRetornarUnprocessableEntity() {
 		final AcaiRequestDTO acaiRequestDTO = new AcaiRequestDTO();
 		acaiRequestDTO.setTamanho("pequenoASD");
+		acaiRequestDTO.setFruta("morango");
 
 		final HttpEntity<AcaiRequestDTO> entity = new HttpEntity<AcaiRequestDTO>(acaiRequestDTO, null);
 		final ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/api/v1/pedidos"), HttpMethod.POST, entity, String.class);
