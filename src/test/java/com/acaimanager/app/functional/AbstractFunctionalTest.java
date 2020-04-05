@@ -19,13 +19,13 @@ public abstract class AbstractFunctionalTest<ReqDTO extends Serializable, ResDTO
     @LocalServerPort
     private int port;
 
-    protected ResponseEntity<String> doPostRequest(ReqDTO reqDTO) {
+    protected ResponseEntity<String> doRequest(HttpMethod method, ReqDTO reqDTO) {
         final HttpEntity<ReqDTO> entity = new HttpEntity<ReqDTO>(reqDTO, null);
-        return restTemplate.exchange(getURL(), HttpMethod.POST, entity, String.class);
+        return restTemplate.exchange(getURL(), method, entity, String.class);
     }
 
-    protected void doPostAndAssertStatusCode(ReqDTO reqDTO, HttpStatus httpStatus) {
-        final ResponseEntity<String> responseEntity = doPostRequest(reqDTO);
+    protected void doRequestAndAssertStatusCode(HttpMethod method, ReqDTO reqDTO, HttpStatus httpStatus) {
+        final ResponseEntity<String> responseEntity = doRequest(method, reqDTO);
         Assert.assertEquals(httpStatus, responseEntity.getStatusCode());
     }
 
