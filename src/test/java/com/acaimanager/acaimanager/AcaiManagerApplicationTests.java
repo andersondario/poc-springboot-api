@@ -3,7 +3,7 @@ package com.acaimanager.acaimanager;
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiRequestDTO;
 import com.acaimanager.acaimanager.api.rest.v1.pedido.dtos.AcaiResponseDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -32,6 +32,7 @@ public class AcaiManagerApplicationTests {
 		final AcaiRequestDTO acaiRequestDTO = new AcaiRequestDTO();
 		acaiRequestDTO.setTamanho("pequeno");
 		acaiRequestDTO.setFruta("morango");
+		acaiRequestDTO.setTempoPreparo(10);
 
 		final HttpEntity<AcaiRequestDTO> entity = new HttpEntity<AcaiRequestDTO>(acaiRequestDTO, null);
 		final ResponseEntity<String> postResponse = restTemplate.exchange(createURLWithPort(BASE_URL), HttpMethod.POST, entity, String.class);
@@ -59,6 +60,7 @@ public class AcaiManagerApplicationTests {
 		final AcaiRequestDTO acaiRequestDTO = new AcaiRequestDTO();
 		acaiRequestDTO.setTamanho("pequenoASD");
 		acaiRequestDTO.setFruta("morango");
+		acaiRequestDTO.setTempoPreparo(10);
 
 		final HttpEntity<AcaiRequestDTO> entity = new HttpEntity<AcaiRequestDTO>(acaiRequestDTO, null);
 		final ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/api/v1/pedidos"), HttpMethod.POST, entity, String.class);

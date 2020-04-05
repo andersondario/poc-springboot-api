@@ -11,6 +11,8 @@ public class AcaiRequestDTO implements Serializable {
 
     private List<String> adicionais;
 
+    private Integer tempoPreparo;
+
     public String getTamanho() {
         return tamanho;
     }
@@ -33,5 +35,13 @@ public class AcaiRequestDTO implements Serializable {
 
     public void setAdicionais(List<String> adicionais) {
         this.adicionais = adicionais;
+    }
+
+    public Integer getTempoPreparo() {
+        return tempoPreparo;
+    }
+
+    public void setTempoPreparo(Integer tempoPreparo) {
+        this.tempoPreparo = tempoPreparo;
     }
 }

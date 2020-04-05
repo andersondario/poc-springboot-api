@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
+
 @Service
 public class AcaiService {
 
@@ -30,12 +32,20 @@ public class AcaiService {
     @Autowired
     private FrutaRepository frutaRepository;
 
-    public Acai criaAcai(String nomeTamanho, String nomeFruta, List<String> nomeAdicionais) throws BusinessException {
-        final Acai acai = new Acai();
+    @Autowired
+    private CalcService calcService;
 
-        acai.setTamanho(getTamanho(nomeTamanho));
-        acai.setFruta(getFruta(nomeFruta));
-        acai.setAdicionais(getAdicionais(acai, nomeAdicionais));
+    public Acai criaAcai(Integer tempoPreparo, String nomeTamanho, String nomeFruta, List<String> nomeAdicionais) throws BusinessException {
+        final Acai acai = new Acai();
+        final Tamanho tamanho = getTamanho(nomeTamanho);
+        final Fruta fruta = getFruta(nomeFruta);
+        final List<Adicional> adicionais = getAdicionais(acai, nomeAdicionais);
+
+        acai.setTamanho(tamanho);
+        acai.setFruta(fruta);
+        acai.setAdicionais(adicionais);
+        acai.setValor(calcService.calcularValor(tamanho, fruta, adicionais));
+        acai.setTempoPreparo(calcService.calcularTempoPreparo(tempoPreparo, tamanho, fruta, adicionais));
 
         return acaiRepository.save(acai);
     }

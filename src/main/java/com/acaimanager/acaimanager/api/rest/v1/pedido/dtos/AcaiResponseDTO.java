@@ -10,23 +10,13 @@ public class AcaiResponseDTO implements Serializable {
     private Long id;
 
     @JsonProperty(value = "valor")
-    private Long valor;
+    private Double valor;
 
     @JsonProperty(value = "tempoPreparo")
-    private Long tempoPreparo;
+    private Integer tempoPreparo;
 
     @JsonProperty(value = "descricao")
     private String descricao;
-
-    public AcaiResponseDTO() {
-    }
-
-    public AcaiResponseDTO(Long id, Long valor, Long tempoPreparo, String descricao) {
-        this.id = id;
-        this.valor = valor;
-        this.tempoPreparo = tempoPreparo;
-        this.descricao = descricao;
-    }
 
     public Long getId() {
         return id;
@@ -36,19 +26,19 @@ public class AcaiResponseDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Long valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-    public Long getTempoPreparo() {
+    public Integer getTempoPreparo() {
         return tempoPreparo;
     }
 
-    public void setTempoPreparo(Long tempoPreparo) {
+    public void setTempoPreparo(Integer tempoPreparo) {
         this.tempoPreparo = tempoPreparo;
     }
 

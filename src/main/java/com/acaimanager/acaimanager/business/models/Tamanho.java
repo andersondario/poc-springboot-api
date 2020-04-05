@@ -1,8 +1,5 @@
 package com.acaimanager.acaimanager.business.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -18,6 +15,12 @@ public class Tamanho extends AbstractEntity implements Serializable {
     @Column(name = "QUANTIDADE")
     private Integer quantidade;
 
+    @Column(name = "VALOR")
+    private Double valor;
+
+    @Column(name = "TEMPO_ADICIONAL")
+    private Integer tempoAdicional;
+
     public String getNome() {
         return nome;
     }
@@ -32,5 +35,21 @@ public class Tamanho extends AbstractEntity implements Serializable {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Integer getTempoAdicional() {
+        return tempoAdicional;
+    }
+
+    public void setTempoAdicional(Integer tempoAdicional) {
+        this.tempoAdicional = tempoAdicional;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 }

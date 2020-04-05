@@ -14,5 +14,6 @@ public class CriarPedidoChecker {
     private void requiredParams(AcaiRequestDTO acaiRequestDTO) throws ParametroObrigatorioException {
         if (acaiRequestDTO.getTamanho() == null) throw new ParametroObrigatorioException("tamanho");
         if (acaiRequestDTO.getFruta() == null) throw new ParametroObrigatorioException("fruta");
+        if (acaiRequestDTO.getTempoPreparo() == null) throw new ParametroObrigatorioException("tempoPreparo");
     }
 }

@@ -1,7 +1,5 @@
 package com.acaimanager.acaimanager.business.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,10 +21,10 @@ public class Acai extends AbstractEntity implements Serializable {
     private List<Adicional> adicionais;
 
     @Column(name = "TEMPO_PREPARO")
-    private Long tempoPreparo;
+    private Integer tempoPreparo;
 
     @Column(name = "VALOR")
-    private Long valor;
+    private Double valor;
 
     public Tamanho getTamanho() {
         return tamanho;
@@ -52,19 +50,19 @@ public class Acai extends AbstractEntity implements Serializable {
         this.adicionais = adicionais;
     }
 
-    public Long getTempoPreparo() {
+    public Integer getTempoPreparo() {
         return tempoPreparo;
     }
 
-    public void setTempoPreparo(Long tempoPreparo) {
+    public void setTempoPreparo(Integer tempoPreparo) {
         this.tempoPreparo = tempoPreparo;
     }
 
-    public Long getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Long valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 }

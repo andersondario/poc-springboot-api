@@ -17,7 +17,7 @@ public class CriarPedidoRestService implements RestService<AcaiRequestDTO, AcaiR
 
     @Override
     public AcaiResponseDTO dispatch(AcaiRequestDTO acaiRequestDTO) throws Exception {
-        final Acai acai = acaiService.criaAcai(acaiRequestDTO.getTamanho(), acaiRequestDTO.getFruta(), acaiRequestDTO.getAdicionais());
+        final Acai acai = acaiService.criaAcai(acaiRequestDTO.getTempoPreparo(), acaiRequestDTO.getTamanho(), acaiRequestDTO.getFruta(), acaiRequestDTO.getAdicionais());
         return ResponseBuilder.build(acai);
     }
 }
