@@ -1,0 +1,11 @@
+version: '2'
+services:
+  app:
+    container_name: acai-manager-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 8080
+    ports:
+    - 8080:8080
